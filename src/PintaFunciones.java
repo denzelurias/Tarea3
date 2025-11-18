@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class PuntoEnOrigen extends JPanel {
+public class PintaFunciones extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -55,7 +55,7 @@ public class PuntoEnOrigen extends JPanel {
         ventana.setLocationRelativeTo(null); // Centrar ventana en pantalla
 
         // Agregar nuestro panel de dibujo
-        ventana.add(new PuntoEnOrigen());
+        ventana.add(new PintaFunciones());
 
         // Mostrar
         ventana.setVisible(true);
