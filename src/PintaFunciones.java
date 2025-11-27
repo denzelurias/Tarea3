@@ -6,37 +6,50 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
 
-// La clase extiende JPanel como se solicita en la estructura
 public class PintaFunciones extends JPanel {
 
     // Variables para controlar el estado del dibujo
-    private Color colorSeno = Color.BLUE;   // Color por defecto
-    private Color colorCoseno = Color.RED;  // Color por defecto
+    private Color colorSeno = Color.BLUE;
+    private Color colorCoseno = Color.RED;
     private boolean dibujarSeno = true;
     private boolean dibujarCoseno = true;
 
     // Métodos setters para comunicar el Menú con el Panel
-    public void setColorSeno(Color c) { this.colorSeno = c; repaint(); }
-    public void setColorCoseno(Color c) { this.colorCoseno = c; repaint(); }
-    public void setDibujarSeno(boolean b) { this.dibujarSeno = b; repaint(); }
-    public void setDibujarCoseno(boolean b) { this.dibujarCoseno = b; repaint(); }
+    public void setColorSeno(Color c) {
+        this.colorSeno = c; repaint();
+    }
+    public void setColorCoseno(Color c) {
+        this.colorCoseno = c; repaint();
+    }
+    public void setDibujarSeno(boolean b) {
+        this.dibujarSeno = b; repaint();
+    }
+    public void setDibujarCoseno(boolean b) {
+        this.dibujarCoseno = b; repaint();
+    }
 
-    // Método principal de dibujado (Pinta las funciones)
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        // Castear a Graphics2D para mejor renderizado (opcional pero recomendado)
         Graphics2D g2 = (Graphics2D) g;
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        int w = getWidth();
-        int h = getHeight();
+        // Añadimos el antialiasing para que se vea mejor
+        RenderingHints hints = g2.getRenderingHints();
+        hints.put(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+        hints.put(RenderingHints.KEY_RENDERING,
+                RenderingHints.VALUE_RENDER_QUALITY);
+        hints.put(RenderingHints.KEY_TEXT_ANTIALIASING,
+                RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        g2.addRenderingHints(hints);
 
-        // Configuración de la Transformación
-        // Ventana (Mundo): X de 0 a 2PI, Y de -1.5 a 1.5 (para dar margen)
-        // Viewport (Pantalla): Dimensiones del panel
-        Transform T = new Transform(0.0, -1.5, 2 * Math.PI, 1.5, 0, 0, w, h);
+        int ancho = getWidth();
+        int alto = getHeight();
+
+        // Aqui le damos los valores a Transform, siendo de 0 a 2PI en "x",
+        // y en "y" de -1.5 a 1.5 para darle un pequeño margen
+        Transform T = new Transform(0.0, -1.5, 2 * Math.PI, 1.5, 0, 0, ancho, alto);
 
         // 1. Graficar los ejes de coordenadas en color negro
         g2.setColor(Color.BLACK);
@@ -166,8 +179,8 @@ public class PintaFunciones extends JPanel {
             JMenuItem itemAcerca = new JMenuItem("Acerca");
             itemAcerca.addActionListener(e -> {
                 JOptionPane.showMessageDialog(frame,
-                        "Estudiantes:\n- [Tu Nombre Aquí]\n- [Nombre Compañero]",
-                        "Acerca de", JOptionPane.INFORMATION_MESSAGE);
+                        "Estudiantes:\n- Paulina Bojórquez Trujillo \n- María Fernanda Hernández García \n- Mario Alberto Ocejo Quijada \n- Denzel Omar Rivera Urias",
+                        "Acerca", JOptionPane.INFORMATION_MESSAGE);
             });
             menuAyuda.add(itemAcerca);
 
