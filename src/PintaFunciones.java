@@ -1,3 +1,10 @@
+// Intregrantes:
+// Paulina Bojórquez Trujillo
+// María Fernanda Hernández García
+// Mario Alberto Ocejo Quijada
+// Denzel Omar Rivera Urías
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
